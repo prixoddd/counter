@@ -20,11 +20,16 @@ export function SbControl(props: PropsType) {
         console.log('max or min changed')
         localStorage.setItem('startValue', JSON.stringify(props.startValue));
         localStorage.setItem('maxValue', JSON.stringify(props.maxValue));
-        if (props.maxValue < props.startValue) {
+        if (props.maxValue === 0 || props.startValue === 0) {
             props.setDisabledButton(true)
         } else {
-            props.setDisabledButton(false)
+            if (props.maxValue < props.startValue) {
+                props.setDisabledButton(true)
+            } else {
+                props.setDisabledButton(false)
+            }
         }
+
     }, [props.startValue, props.maxValue])
 
 
@@ -49,7 +54,7 @@ export function SbControl(props: PropsType) {
             return ''
         }
     }
-    
+
     const disabledMax = () => {
         if (props.startValue > 0) {
             if (props.maxValue <= props.startValue) {
@@ -68,14 +73,16 @@ export function SbControl(props: PropsType) {
                     <input type="number"
                            className={disabledMax()}
                            onChange={onChangeMax}
-                           value={props.maxValue}/>
+                        value={props.maxValue}
+                    />
                 </div>
                 <div className={s.textInput}>
                     start value:
                     <input type="number"
                            className={disabledStart()}
                            onChange={onChangeStart}
-                           value={props.startValue}/>
+                        value={props.startValue}
+                    />
                 </div>
             </div>
 
