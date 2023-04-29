@@ -7,12 +7,15 @@ export type Distype = 'active' | 'disabled' | 'error'
 
 
 function App() {
-    const [startValue, setStartValue] = useState<number>(0)
-    const [maxValue, setMaxValue] = useState<number>(0)
 
+    const LocalStartValue = localStorage.getItem('startValue');
+    const LocalMaxValue = localStorage.getItem('maxValue');
+
+    const [startValue, setStartValue] = useState<number>(LocalStartValue ? Number(LocalStartValue) : 0)
+    const [maxValue, setMaxValue] = useState<number>(LocalMaxValue ? Number(LocalMaxValue) : 0)
     const [scoreBoard, setScoreBoard] = useState<number>(0)
-
     const [disabled, setDisabled] = useState<Distype>('disabled')
+    const [disabledButton, setDisabledButton] = useState(true)
 
 
     const incScoreBoard = () => {
@@ -23,30 +26,20 @@ function App() {
         setScoreBoard(startValue)
     }
 
-    const controlMaxValue = (n:number) => {
-       setMaxValue(n)
-
-    }
-
     const controlStartValue = (n: number) => {
         setScoreBoard(n)
         setStartValue(n)
     }
 
-    const setScore = (s:Distype) => {
-        setDisabled(s)
-    }
-
-   // if(maxValue < startValue ) {
-   //     setScore('error')
-   // }
-
   return (
       <div className={s.content}>
-        <SbControl controlMaxValue={controlMaxValue}
+        <SbControl controlMaxValue={setMaxValue}
                    controlStartValue={controlStartValue}
-                   setScore={setScore}
-                   // checkForError={checkForError}
+                   startValue={startValue}
+                   maxValue={maxValue}
+                   setScore={setDisabled}
+                   disabledButton={disabledButton}
+                   setDisabledButton={setDisabledButton}
         />
         <Scoreboard scoreBoard={scoreBoard}
                     resetScoreBoard={resetScoreBoard}
