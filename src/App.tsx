@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import s from './App.module.css'
 import {Scoreboard} from './Components/Scoreboard/Scoreboard';
 import {SbControl} from './Components/SbControll/SbControl';
@@ -12,20 +12,23 @@ export enum test {
 function App() {
 
 
+        const LocalStartValue = Number(localStorage.getItem('startValue'));
+        const LocalMaxValue = Number(localStorage.getItem('maxValue'))
+        // LocalStartValue && setStartValue(LocalStartValue)
+        // LocalMaxValue && setMaxValue(LocalMaxValue)
 
-    const [startValue, setStartValue] = useState<any>('')
-    const [maxValue, setMaxValue] = useState<any>('')
+
+
+    const [startValue, setStartValue] = useState<number>(LocalStartValue ? LocalStartValue : 0)
+    const [maxValue, setMaxValue] = useState<number>(LocalMaxValue ? LocalMaxValue : 0)
     const [disabledButton, setDisabledButton] = useState(true)
 
     const [scoreBoard, setScoreBoard] = useState<number>(0)
     const [disabled, setDisabled] = useState<Distype>('disabled')
-useEffect(() => {
-    const LocalStartValue = localStorage.getItem('startValue');
-    const LocalMaxValue = localStorage.getItem('maxValue');
-    LocalStartValue && setStartValue(LocalStartValue)
-    LocalMaxValue && setMaxValue(LocalMaxValue)
 
-}, [])
+    // console.log(startValue)
+    // console.log(maxValue)
+
 
     const incScoreBoard = () => {
         setScoreBoard(scoreBoard + 1)

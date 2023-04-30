@@ -21,6 +21,7 @@ export function SbControl(props: PropsType) {
 
         localStorage.setItem('startValue', JSON.stringify(props.startValue));
         localStorage.setItem('maxValue', JSON.stringify(props.maxValue));
+
         if (props.maxValue === 0) {
             props.setDisabledButton(true)
         } else {
@@ -47,7 +48,14 @@ export function SbControl(props: PropsType) {
     }
 
     const disabledStart = () => {
-        if (props.startValue < 0 || props.maxValue < props.startValue) {
+        if (props.maxValue === 0 && props.startValue === 0) {
+            return ''
+        }
+
+        if (props.startValue < 0
+            || props.maxValue < props.startValue
+            || props.maxValue === props.startValue
+        ) {
             props.setDisabledButton(true)
             props.setScore('error')
             return s.redInput
@@ -60,14 +68,25 @@ export function SbControl(props: PropsType) {
         if (props.maxValue === 0 && props.startValue === 0) {
             return ''
         }
-        if (props.startValue >= 0 || props.maxValue <= 0) {
-            if (props.maxValue <= props.startValue || props.maxValue <= 0) {
-                props.setDisabledButton(true)
-                props.setScore('error')
-                return s.redInput
-            }
+        if (props.maxValue < props.startValue
+            || props.maxValue <= 0
+        ||  props.startValue < 0
+            || props.maxValue === props.startValue
+        ) {
+            props.setDisabledButton(true)
+            props.setScore('error')
+            return s.redInput
         }
         return ''
+
+        // if (props.startValue >= 0 || props.maxValue <= 0) {
+        //     if (props.maxValue <= props.startValue || props.maxValue <= 0) {
+        //         props.setDisabledButton(true)
+        //         props.setScore('error')
+        //         return s.redInput
+        //     }
+        // }
+
     }
 
     return (
