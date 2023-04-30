@@ -17,7 +17,7 @@ type PropsType = {
 export function SbControl(props: PropsType) {
 
     useEffect(() => {
-        console.log('max or min changed')
+        // console.log('max or min changed')
         localStorage.setItem('startValue', JSON.stringify(props.startValue));
         localStorage.setItem('maxValue', JSON.stringify(props.maxValue));
         if (props.maxValue === 0) {
@@ -29,7 +29,6 @@ export function SbControl(props: PropsType) {
                 props.setDisabledButton(false)
             }
         }
-
     }, [props.startValue, props.maxValue])
 
 
@@ -56,8 +55,11 @@ export function SbControl(props: PropsType) {
     }
 
     const disabledMax = () => {
-        if (props.startValue >= 0) {
-            if (props.maxValue <= props.startValue) {
+        if (props.maxValue === 0 && props.startValue === 0) {
+            return ''
+        }
+        if (props.startValue >= 0 || props.maxValue <= 0) {
+            if (props.maxValue <= props.startValue || props.maxValue <= 0) {
                 props.setDisabledButton(true)
                 return s.redInput
             }
@@ -73,7 +75,7 @@ export function SbControl(props: PropsType) {
                     <input type="number"
                            className={disabledMax()}
                            onChange={onChangeMax}
-                        value={props.maxValue}
+                           value={props.maxValue}
                     />
                 </div>
                 <div className={s.textInput}>
@@ -81,11 +83,10 @@ export function SbControl(props: PropsType) {
                     <input type="number"
                            className={disabledStart()}
                            onChange={onChangeStart}
-                        value={props.startValue}
+                           value={props.startValue}
                     />
                 </div>
             </div>
-
             <div className={s.buttonsPlace}>
                 <UniButton name='set' onClick={setActive} disabled={props.disabledButton}/>
             </div>

@@ -14,7 +14,7 @@ type PropsType = {
 export function Scoreboard(props: PropsType) {
 
     const scoreBoard = () => {
-        if(props.disabled === 'disabled' || props.disabled === 'error') {
+        if (props.disabled === 'disabled' || props.disabled === 'error') {
             return (
                 <div className={s.scoreBoardDisabled}>
                     <div className={props.disabled === 'error' ? s.red : ''}>
@@ -26,9 +26,9 @@ export function Scoreboard(props: PropsType) {
         } else {
             return (
                 <div className={s.scoreBoard}>
-                <div className={props.scoreBoard === props.maxValue ? s.red : ""}>
-                    {props.scoreBoard}
-                </div>
+                    <div className={props.scoreBoard === props.maxValue ? s.red : ""}>
+                        {props.scoreBoard}
+                    </div>
                 </div>
             )
         }
@@ -37,16 +37,14 @@ export function Scoreboard(props: PropsType) {
     const incButtonDisabled = props.scoreBoard >= props.maxValue || (props.disabled === "disabled" || props.disabled === "error")
     const buttonDisabled = (props.disabled === "disabled" || props.disabled === "error")
 
-
-
-  return (
-      <div className={s.background}>
-              {scoreBoard()}
-        <div className={s.buttonsPlace}>
-            <UniButton disabled={buttonDisabled} onClick={props.resetScoreBoard} name='Reset'/>
-            <UniButton disabled={incButtonDisabled} onClick={props.incScoreBoard} name="Inc"/>
+    return (
+        <div className={s.background}>
+            {scoreBoard()}
+            <div className={s.buttonsPlace}>
+                <UniButton disabled={buttonDisabled} onClick={props.resetScoreBoard} name='Reset'/>
+                <UniButton disabled={incButtonDisabled} onClick={props.incScoreBoard} name="Inc"/>
+            </div>
         </div>
-      </div>
-  )
+    )
 }
 
