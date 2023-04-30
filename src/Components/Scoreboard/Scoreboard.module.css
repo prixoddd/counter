@@ -46,6 +46,10 @@
     justify-content: center;
 }
 
+.scoreBoard disabled {
+
+}
+
 .scoreBoardDisabled {
     height: 100px;
     width: 240px;

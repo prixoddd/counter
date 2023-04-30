@@ -1,23 +1,31 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './App.module.css'
 import {Scoreboard} from './Components/Scoreboard/Scoreboard';
 import {SbControl} from './Components/SbControll/SbControl';
 
 export type Distype = 'active' | 'disabled' | 'error'
 
-function App() {
-    const LocalStartValue = localStorage.getItem('startValue');
-    const LocalMaxValue = localStorage.getItem('maxValue');
+export enum test {
+    ACTIVE = 'active'
+}
 
-    const [startValue, setStartValue] = useState<number>(LocalStartValue ? Number(LocalStartValue) : 0)
-    const [maxValue, setMaxValue] = useState<number>(LocalMaxValue ? Number(LocalMaxValue) : 0)
+function App() {
+
+
+
+    const [startValue, setStartValue] = useState<any>('')
+    const [maxValue, setMaxValue] = useState<any>('')
     const [disabledButton, setDisabledButton] = useState(true)
 
     const [scoreBoard, setScoreBoard] = useState<number>(0)
     const [disabled, setDisabled] = useState<Distype>('disabled')
+useEffect(() => {
+    const LocalStartValue = localStorage.getItem('startValue');
+    const LocalMaxValue = localStorage.getItem('maxValue');
+    LocalStartValue && setStartValue(LocalStartValue)
+    LocalMaxValue && setMaxValue(LocalMaxValue)
 
-
-
+}, [])
 
     const incScoreBoard = () => {
         setScoreBoard(scoreBoard + 1)

@@ -25,7 +25,7 @@ export function Scoreboard(props: PropsType) {
             )
         } else {
             return (
-                <div className={s.scoreBoard}>
+                <div className={ s.scoreBoard}>
                     <div className={props.scoreBoard === props.maxValue ? s.red : ""}>
                         {props.scoreBoard}
                     </div>

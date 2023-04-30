@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import s from './SbControl.module.css'
 import {UniButton} from '../Button/UniButton';
-import {Distype} from '../../App';
+import {Distype, test} from '../../App';
 
 type PropsType = {
     controlMaxValue: (n: number) => void
@@ -18,6 +18,7 @@ export function SbControl(props: PropsType) {
 
     useEffect(() => {
         // console.log('max or min changed')
+
         localStorage.setItem('startValue', JSON.stringify(props.startValue));
         localStorage.setItem('maxValue', JSON.stringify(props.maxValue));
         if (props.maxValue === 0) {
@@ -42,12 +43,13 @@ export function SbControl(props: PropsType) {
     }
 
     const setActive = () => {
-        props.setScore("active")
+        props.setScore(test.ACTIVE)
     }
 
     const disabledStart = () => {
-        if (props.startValue < 0) {
+        if (props.startValue < 0 || props.maxValue < props.startValue) {
             props.setDisabledButton(true)
+            props.setScore('error')
             return s.redInput
         } else {
             return ''
@@ -61,6 +63,7 @@ export function SbControl(props: PropsType) {
         if (props.startValue >= 0 || props.maxValue <= 0) {
             if (props.maxValue <= props.startValue || props.maxValue <= 0) {
                 props.setDisabledButton(true)
+                props.setScore('error')
                 return s.redInput
             }
         }
