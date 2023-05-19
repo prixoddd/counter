@@ -1,16 +1,18 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import s from './SbControl.module.css'
 import {UniButton} from '../Button/UniButton';
-import {Distype, test} from '../../App';
+import {Distype} from '../../App';
+
+import store from '../../redux/redux-store';
 
 type PropsType = {
-    controlMaxValue: (n: number) => void
+    // controlMaxValue: (n: number) => void
     controlStartValue: (n: number) => void
-    setScore: (s: Distype) => void
+    // setScore: (s: Distype) => void
     startValue: number
     maxValue: number
     disabledButton: boolean
-    setDisabledButton: (n: boolean) => void
+    // setDisabledButton: (n: boolean) => void
 }
 
 
@@ -23,28 +25,37 @@ export function SbControl(props: PropsType) {
         localStorage.setItem('maxValue', JSON.stringify(props.maxValue));
 
         if (props.maxValue === 0) {
-            props.setDisabledButton(true)
+            // props.setDisabledButton(true)
+            store.dispatch({ type: 'SET_DISABLED_BUTTON', disabled: true });
         } else {
             if (props.maxValue < props.startValue) {
-                props.setDisabledButton(true)
+                // props.setDisabledButton(true)
+                store.dispatch({ type: 'SET_DISABLED_BUTTON', disabled: true });
             } else {
-                props.setDisabledButton(false)
+                // props.setDisabledButton(false)
+                store.dispatch({ type: 'SET_DISABLED_BUTTON', disabled: false });
             }
         }
     }, [props.startValue, props.maxValue])
 
 
     const onChangeMax = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setScore("disabled")
-        props.controlMaxValue(Number(e.currentTarget.value))
+        store.dispatch({ type: 'SET_DISABLED', disabled: "disabled" });
+        // props.setScore("disabled")
+        // props.controlMaxValue(Number(e.currentTarget.value))
+        store.dispatch({ type: 'SET_MAX_VALUE', value: Number(e.currentTarget.value) });
     }
     const onChangeStart = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setScore("disabled")
-        props.controlStartValue(Number(e.currentTarget.value))
+        // props.setScore("disabled")
+        store.dispatch({ type: 'SET_DISABLED', disabled: "disabled" });
+        // props.controlStartValue(Number(e.currentTarget.value))
+        store.dispatch({ type: 'SET_START_VALUE', value: Number(e.currentTarget.value) });
     }
 
     const setActive = () => {
-        props.setScore(test.ACTIVE)
+        // props.setScore(test.ACTIVE)
+        store.dispatch({ type: 'SET_DISABLED', disabled: 'active' });
+
     }
 
     const disabledStart = () => {
@@ -56,8 +67,10 @@ export function SbControl(props: PropsType) {
             || props.maxValue < props.startValue
             || props.maxValue === props.startValue
         ) {
-            props.setDisabledButton(true)
-            props.setScore('error')
+            // props.setDisabledButton(true)
+            store.dispatch({ type: 'SET_DISABLED_BUTTON', disabled: true });
+            // props.setScore('error')
+            store.dispatch({ type: 'SET_DISABLED', disabled: "error" });
             return s.redInput
         } else {
             return ''
@@ -73,8 +86,10 @@ export function SbControl(props: PropsType) {
         ||  props.startValue < 0
             || props.maxValue === props.startValue
         ) {
-            props.setDisabledButton(true)
-            props.setScore('error')
+            // props.setDisabledButton(true)
+            store.dispatch({ type: 'SET_DISABLED_BUTTON', disabled: true });
+            // props.setScore('error')
+            store.dispatch({ type: 'SET_DISABLED', disabled: "error" });
             return s.redInput
         }
         return ''
