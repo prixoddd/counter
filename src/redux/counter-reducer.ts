@@ -6,13 +6,13 @@ const SET_DISABLED = 'SET_DISABLED'
 
 const initialState = {
     startValue: 0,
-    maxValue: 5,
+    maxValue: 0,
     disabledButton: true,
     scoreBoard: 0,
     disabled: 'disabled' as DisType
 }
 
-type DisType = 'active' | 'disabled' | 'error'
+export type DisType = 'active' | 'disabled' | 'error'
 
 type BossActionType = SetStartValueActionType
     | SetMaxValueActionType
