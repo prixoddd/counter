@@ -13,12 +13,14 @@ function App(props: MyAppStateType) {
     // const LocalMaxValue = Number(localStorage.getItem('maxValue'))
 
     const incScoreBoard = () => {
-props.setScoreBoard(props.scoreBoard + 1)
+// props.setScoreBoard(props.scoreBoard + 1)
+
+        props.increaseSbValue(props.scoreBoard)
     }
 
     const resetScoreBoard = () => {
-        if(typeof(props.startValue) === 'number')
-        props.setScoreBoard(props.startValue)
+        if (typeof (props.startValue) === 'number')
+            props.setScoreBoard(props.startValue)
 
     }
 
@@ -31,12 +33,12 @@ props.setScoreBoard(props.scoreBoard + 1)
         <div className={s.content}>
             <SbControl
                 controlMaxValue={props.setMaxValue}
-                       controlStartValue={controlStartValue}
-                       startValue={props.startValue}
-                       maxValue={props.maxValue}
-                       setScore={props.setDisabled}
-                       disabledButton={props.disabledButton}
-                       setDisabledButton={props.setDisabledButton}
+                controlStartValue={controlStartValue}
+                startValue={props.startValue}
+                maxValue={props.maxValue}
+                setScore={props.setDisabled}
+                disabledButton={props.disabledButton}
+                setDisabledButton={props.setDisabledButton}
             />
             <Scoreboard scoreBoard={props.scoreBoard}
                         resetScoreBoard={resetScoreBoard}
