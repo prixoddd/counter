@@ -4,6 +4,7 @@ const SET_DISABLED_BUTTON = 'SET_DISABLED_BUTTON'
 const SET_SCORE_BOARD = 'SET_SCORE_BOARD'
 const SET_DISABLED = 'SET_DISABLED'
 const INCREASE_SB_VALUE = 'INCREASE_SB_VALUE'
+//dsdasdasdasda
 
 const initialState = {
     startValue: undefined,
