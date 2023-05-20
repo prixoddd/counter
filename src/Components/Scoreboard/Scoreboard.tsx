@@ -11,7 +11,7 @@ type PropsType = {
     disabled: Distype
 }
 
-export function Scoreboard(props: PropsType) {
+export const Scoreboard = React.memo((props: PropsType) => {
 
     const scoreBoard = () => {
         if (props.disabled === 'disabled' || props.disabled === 'error') {
@@ -25,7 +25,7 @@ export function Scoreboard(props: PropsType) {
             )
         } else {
             return (
-                <div className={ s.scoreBoard}>
+                <div className={s.scoreBoard}>
                     <div className={props.scoreBoard === props.maxValue ? s.red : ""}>
                         {props.scoreBoard}
                     </div>
@@ -35,7 +35,7 @@ export function Scoreboard(props: PropsType) {
     }
 
     const incButtonDisabled = props.maxValue !== undefined && props.scoreBoard >= props.maxValue || (props.disabled === "disabled" || props.disabled === "error")
-    const buttonDisabled = (props.disabled === "disabled" || props.disabled === "error")
+    const buttonDisabled = props.disabled === "disabled" || props.disabled === "error"
 
     return (
         <div className={s.background}>
@@ -46,5 +46,5 @@ export function Scoreboard(props: PropsType) {
             </div>
         </div>
     )
-}
+})
 

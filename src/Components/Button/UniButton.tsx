@@ -9,10 +9,14 @@ type uniButtonPropsType = DefaultButtonPropsType & {
     name: string
 }
 
-export const UniButton: React.FC<uniButtonPropsType> = (props) => {
+export const UniButton: React.FC<uniButtonPropsType> = React.memo( (props) => {
 
     return (
-        <button className={props.disabled ? s.buttonDisabled : ''} onClick={props.onClick} disabled={props.disabled}>{props.name}</button>
+        <button
+            className={props.disabled ? s.buttonDisabled : ''}
+            onClick={props.onClick}
+            disabled={props.disabled}
+        >{props.name}</button>
     );
-};
+})
 

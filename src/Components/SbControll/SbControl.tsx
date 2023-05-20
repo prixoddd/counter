@@ -14,7 +14,7 @@ type PropsType = {
 }
 
 
-export function SbControl(props: PropsType) {
+export const SbControl = React.memo( (props: PropsType) => {
 
     useEffect(() => {
         // console.log('max or min changed')
@@ -121,9 +121,12 @@ export function SbControl(props: PropsType) {
                 </div>
             </div>
             <div className={s.buttonsPlace}>
-                <UniButton name='set' onClick={setActive} disabled={props.disabledButton}/>
+
+                    <UniButton name='set' onClick={setActive} disabled={props.disabledButton}/>
+
+
             </div>
         </div>
     )
-}
+})
 
