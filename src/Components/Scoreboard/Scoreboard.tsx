@@ -7,7 +7,7 @@ type PropsType = {
     scoreBoard: number
     resetScoreBoard: () => void
     incScoreBoard: () => void
-    maxValue: number
+    maxValue: number | undefined
     disabled: Distype
 }
 
@@ -34,7 +34,7 @@ export function Scoreboard(props: PropsType) {
         }
     }
 
-    const incButtonDisabled = props.scoreBoard >= props.maxValue || (props.disabled === "disabled" || props.disabled === "error")
+    const incButtonDisabled = props.maxValue !== undefined && props.scoreBoard >= props.maxValue || (props.disabled === "disabled" || props.disabled === "error")
     const buttonDisabled = (props.disabled === "disabled" || props.disabled === "error")
 
     return (

@@ -5,8 +5,8 @@ const SET_SCORE_BOARD = 'SET_SCORE_BOARD'
 const SET_DISABLED = 'SET_DISABLED'
 
 const initialState = {
-    startValue: 0,
-    maxValue: 0,
+    startValue: undefined,
+    maxValue: undefined,
     disabledButton: true,
     scoreBoard: 0,
     disabled: 'disabled' as DisType
@@ -21,8 +21,8 @@ type BossActionType = SetStartValueActionType
     | SetDisabledActionType
 
 export type InitialStateType = {
-    startValue: number
-    maxValue: number
+    startValue: number | undefined
+    maxValue: number | undefined
     disabledButton: boolean
     scoreBoard: number
     disabled: DisType

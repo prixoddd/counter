@@ -17,6 +17,7 @@ props.setScoreBoard(props.scoreBoard + 1)
     }
 
     const resetScoreBoard = () => {
+        if(typeof(props.startValue) === 'number')
         props.setScoreBoard(props.startValue)
 
     }

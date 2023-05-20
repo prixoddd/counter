@@ -7,8 +7,8 @@ type PropsType = {
     controlMaxValue: (n: number) => void
     controlStartValue: (n: number) => void
     setScore: (s: Distype) => void
-    startValue: number
-    maxValue: number
+    startValue: number | undefined
+    maxValue: number | undefined
     disabledButton: boolean
     setDisabledButton: (n: boolean) => void
 }
@@ -26,13 +26,16 @@ export function SbControl(props: PropsType) {
             props.setDisabledButton(true)
 
         } else {
-            if (props.maxValue < props.startValue) {
-                props.setDisabledButton(true)
+            if (typeof (props.maxValue) === 'number' && typeof (props.startValue) === 'number') {
+                if (props.maxValue < props.startValue) {
+                    props.setDisabledButton(true)
 
-            } else {
-                props.setDisabledButton(false)
+                } else {
+                    props.setDisabledButton(false)
 
+                }
             }
+
         }
     }, [props.startValue, props.maxValue])
 
@@ -52,34 +55,38 @@ export function SbControl(props: PropsType) {
     }
 
     const disabledStart = () => {
-        if (props.maxValue === 0 && props.startValue === 0) {
-            return ''
-        }
+        if (typeof (props.maxValue) === 'number' && typeof (props.startValue) === 'number') {
+            if (props.maxValue === 0 && props.startValue === 0) {
+                return ''
+            }
 
-        if (props.startValue < 0
-            || props.maxValue < props.startValue
-            || props.maxValue === props.startValue
-        ) {
-            props.setDisabledButton(true)
-            props.setScore('error')
-            return s.redInput
-        } else {
-            return ''
+            if (props.startValue < 0
+                || props.maxValue < props.startValue
+                || props.maxValue === props.startValue
+            ) {
+                props.setDisabledButton(true)
+                props.setScore('error')
+                return s.redInput
+            } else {
+                return ''
+            }
         }
     }
 
     const disabledMax = () => {
-        if (props.maxValue === 0 && props.startValue === 0) {
-            return ''
-        }
-        if (props.maxValue < props.startValue
-            || props.maxValue <= 0
-        ||  props.startValue < 0
-            || props.maxValue === props.startValue
-        ) {
-            props.setDisabledButton(true)
-            props.setScore('error')
-            return s.redInput
+        if (typeof (props.maxValue) === 'number' && typeof (props.startValue) === 'number') {
+            if (props.maxValue === 0 && props.startValue === 0) {
+                return ''
+            }
+            if (props.maxValue < props.startValue
+                || props.maxValue <= 0
+                || props.startValue < 0
+                || props.maxValue === props.startValue
+            ) {
+                props.setDisabledButton(true)
+                props.setScore('error')
+                return s.redInput
+            }
         }
         return ''
 
