@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {
-    DisType,
+    DisType, increaseSbValueAC,
     InitialStateType,
     setDisabledAC,
     setDisabledButtonAC,
@@ -14,11 +14,13 @@ import {AppStateType} from './redux/redux-store';
 export type MyAppStateType = InitialStateType & MapDispatchToPropsType
 
 type MapDispatchToPropsType = {
-    setStartValue: (value: number) =>void
-    setMaxValue: (value: number) =>void
+    setStartValue: (value: number) => void
+    setMaxValue: (value: number) => void
     setDisabledButton: (disabled: boolean) => void
-    setScoreBoard: (value: number) =>void
-    setDisabled: (disabled: DisType) =>void
+    setScoreBoard: (value: number) => void
+    setDisabled: (disabled: DisType) => void
+    increaseSbValue: (value: number) => void
+
 }
 
 const mapStateToProps = (state: AppStateType): InitialStateType => {
@@ -36,7 +38,8 @@ const mapDispatchToProps = {
     setMaxValue: setMaxValueAC,
     setDisabledButton: setDisabledButtonAC,
     setScoreBoard: setScoreBoardAC,
-    setDisabled: setDisabledAC
+    setDisabled: setDisabledAC,
+    increaseSbValue: increaseSbValueAC
 }
 
 
