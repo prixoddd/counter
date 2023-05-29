@@ -1,6 +1,6 @@
 {
   "name": "counter1",
-  "homepage": "https://prixoddd.github.io/portfolio",
+  "homepage": "https://prixoddd.github.io/counter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
