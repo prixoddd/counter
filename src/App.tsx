@@ -4,10 +4,7 @@ import {Scoreboard} from './Components/Scoreboard/Scoreboard';
 import {SbControl} from './Components/SbControll/SbControl';
 import {useDispatch} from 'react-redux';
 import { useAppSelector} from './redux/redux-store';
-import {increaseSbValue, setScoreBoard, setStartValue} from './redux/counter-reducer';
-
-
-export type Distype = 'active' | 'disabled' | 'error'
+import {increaseSbValue, setScoreBoard} from './redux/counter-reducer';
 
 export function App() {
 
@@ -23,29 +20,12 @@ export function App() {
         dispatch(increaseSbValue(state.scoreBoard))
     }
 
-
-    const controlStartValue = (n: number) => {
-        dispatch(setScoreBoard(n))
-        dispatch(setStartValue(n))
-    }
-
     return (
         <div className={s.content}>
-            <SbControl
-                // controlMaxValue={props.setMaxValue}
-                controlStartValue={controlStartValue}
-                // startValue={props.startValue}
-                // maxValue={props.maxValue}
-                // setScore={props.setDisabled}
-                // disabledButton={props.disabledButton}
-                // setDisabledButton={props.setDisabledButton}
-            />
+            <SbControl/>
             <Scoreboard
-                // scoreBoard={props.scoreBoard}
                         resetScoreBoard={resetScoreBoard}
                         incScoreBoard={incScoreBoard}
-                //         maxValue={props.maxValue}
-                //         disabled={props.disabled}
             />
         </div>
 
