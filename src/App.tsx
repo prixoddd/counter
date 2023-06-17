@@ -25,8 +25,8 @@ export function App() {
 
 
     const controlStartValue = (n: number) => {
-        setScoreBoard(n)
-        setStartValue(n)
+        dispatch(setScoreBoard(n))
+        dispatch(setStartValue(n))
     }
 
     return (

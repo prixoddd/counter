@@ -22,7 +22,12 @@ export const SbControl = React.memo( (props: PropsType) => {
     const dispatch = useDispatch()
 
 
+
+
     useEffect(() => {
+
+        console.log(state.maxValue)
+        console.log(state.startValue)
 
         localStorage.setItem('startValue', JSON.stringify(state.startValue));
         localStorage.setItem('maxValue', JSON.stringify(state.maxValue));
