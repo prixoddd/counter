@@ -1,24 +1,30 @@
 import React from 'react';
 import s from './Scoreboard.module.css'
 import {UniButton} from '../Button/UniButton';
-import {Distype} from '../../App';
+import {useAppSelector} from '../../redux/redux-store';
+import {useDispatch} from 'react-redux';
 
 type PropsType = {
-    scoreBoard: number
+    // scoreBoard: number
     resetScoreBoard: () => void
     incScoreBoard: () => void
-    maxValue: number | undefined
-    disabled: Distype
+    // maxValue: number | undefined
+    // disabled: Distype
 }
 
 export const Scoreboard = React.memo((props: PropsType) => {
 
+    const state = useAppSelector(state => state.counter)
+    const dispatch = useDispatch()
+
+
+
     const scoreBoard = () => {
-        if (props.disabled === 'disabled' || props.disabled === 'error') {
+        if (state.disabled === 'disabled' || state.disabled === 'error') {
             return (
                 <div className={s.scoreBoardDisabled}>
-                    <div className={props.disabled === 'error' ? s.red : ''}>
-                        {props.disabled === 'error' ? "Incorrect value!" : "enter values and press 'set'"}
+                    <div className={state.disabled === 'error' ? s.red : ''}>
+                        {state.disabled === 'error' ? "Incorrect value!" : "enter values and press 'set'"}
 
                     </div>
                 </div>
@@ -26,16 +32,16 @@ export const Scoreboard = React.memo((props: PropsType) => {
         } else {
             return (
                 <div className={s.scoreBoard}>
-                    <div className={props.scoreBoard === props.maxValue ? s.red : ""}>
-                        {props.scoreBoard}
+                    <div className={state.scoreBoard === state.maxValue ? s.red : ""}>
+                        {state.scoreBoard}
                     </div>
                 </div>
             )
         }
     }
 
-    const incButtonDisabled = props.maxValue !== undefined && props.scoreBoard >= props.maxValue || (props.disabled === "disabled" || props.disabled === "error")
-    const buttonDisabled = props.disabled === "disabled" || props.disabled === "error"
+    const incButtonDisabled = state.maxValue !== undefined && state.scoreBoard >= state.maxValue || (state.disabled === "disabled" || state.disabled === "error")
+    const buttonDisabled = state.disabled === "disabled" || state.disabled === "error"
 
     return (
         <div className={s.background}>

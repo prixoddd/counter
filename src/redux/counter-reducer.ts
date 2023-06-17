@@ -4,24 +4,25 @@ const SET_DISABLED_BUTTON = 'SET_DISABLED_BUTTON'
 const SET_SCORE_BOARD = 'SET_SCORE_BOARD'
 const SET_DISABLED = 'SET_DISABLED'
 const INCREASE_SB_VALUE = 'INCREASE_SB_VALUE'
-//dsdasdasdasdafsfds
+const RESET_SCOREBOARD = 'RESET_SCOREBOARD'
 
 const initialState = {
     startValue: undefined,
     maxValue: undefined,
-    disabledButton: true,
+    disabledButton: false,
     scoreBoard: 0,
     disabled: 'disabled' as DisType
 }
 
 export type DisType = 'active' | 'disabled' | 'error'
 
-type BossActionType = SetStartValueActionType
+export type BossActionType = SetStartValueActionType
     | SetMaxValueActionType
     | SetDisabledButtonActionType
     | SetScoreBoardActionType
     | SetDisabledActionType
     | increaseSbValueActionType
+| resetScoreBoardActionType
 
 export type InitialStateType = {
     startValue: number | undefined
@@ -67,21 +68,27 @@ export const counterReducer = (state: InitialStateType = initialState, action: B
                 ...state,
                 scoreBoard: action.value + 1
             }
+        case 'RESET_SCOREBOARD':
+            return {
+                ...state
+            }
         default:
             return state
     }
 }
 
-export type SetStartValueActionType = ReturnType<typeof setStartValueAC>
-export type SetMaxValueActionType = ReturnType<typeof setMaxValueAC>
-export type SetDisabledButtonActionType = ReturnType<typeof setDisabledButtonAC>
-export type SetScoreBoardActionType = ReturnType<typeof setScoreBoardAC>
-export type SetDisabledActionType = ReturnType<typeof setDisabledAC>
-export type increaseSbValueActionType = ReturnType<typeof increaseSbValueAC>
+export type SetStartValueActionType = ReturnType<typeof setStartValue>
+export type SetMaxValueActionType = ReturnType<typeof setMaxValue>
+export type SetDisabledButtonActionType = ReturnType<typeof setDisabledButton>
+export type SetScoreBoardActionType = ReturnType<typeof setScoreBoard>
+export type SetDisabledActionType = ReturnType<typeof setDisabled>
+export type increaseSbValueActionType = ReturnType<typeof increaseSbValue>
+export type resetScoreBoardActionType = ReturnType<typeof resetScoreBoardAC>
 
-export const setStartValueAC = (value: number) => ({type: SET_START_VALUE, value} as const)
-export const setMaxValueAC = (value: number) => ({type: SET_MAX_VALUE, value} as const)
-export const setDisabledButtonAC = (disabled: boolean) => ({type: SET_DISABLED_BUTTON, disabled} as const)
-export const setScoreBoardAC = (value: number) => ({type: SET_SCORE_BOARD, value} as const)
-export const setDisabledAC = (disabled: DisType) => ({type: SET_DISABLED, disabled} as const)
-export const increaseSbValueAC = (value: number) => ({type: INCREASE_SB_VALUE, value} as const)
+export const setStartValue = (value: number) => ({type: SET_START_VALUE, value} as const)
+export const setMaxValue = (value: number) => ({type: SET_MAX_VALUE, value} as const)
+export const setDisabledButton = (disabled: boolean) => ({type: SET_DISABLED_BUTTON, disabled} as const)
+export const setScoreBoard = (value: number) => ({type: SET_SCORE_BOARD, value} as const)
+export const setDisabled = (disabled: DisType) => ({type: SET_DISABLED, disabled} as const)
+export const increaseSbValue = (value: number) => ({type: INCREASE_SB_VALUE, value} as const)
+export const resetScoreBoardAC = () => ({type: RESET_SCOREBOARD} as const)

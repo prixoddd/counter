@@ -1,12 +1,12 @@
 import {connect} from 'react-redux';
 import {
-    DisType, increaseSbValueAC,
+    DisType, increaseSbValue,
     InitialStateType,
-    setDisabledAC,
-    setDisabledButtonAC,
-    setMaxValueAC,
-    setScoreBoardAC,
-    setStartValueAC
+    setDisabled,
+    setDisabledButton,
+    setMaxValue,
+    setScoreBoard,
+    setStartValue
 } from './redux/counter-reducer';
 import App from './App';
 import {AppStateType} from './redux/redux-store';
@@ -34,12 +34,12 @@ const mapStateToProps = (state: AppStateType): InitialStateType => {
 }
 
 const mapDispatchToProps = {
-    setStartValue: setStartValueAC,
-    setMaxValue: setMaxValueAC,
-    setDisabledButton: setDisabledButtonAC,
-    setScoreBoard: setScoreBoardAC,
-    setDisabled: setDisabledAC,
-    increaseSbValue: increaseSbValueAC
+    setStartValue: setStartValue,
+    setMaxValue: setMaxValue,
+    setDisabledButton: setDisabledButton,
+    setScoreBoard: setScoreBoard,
+    setDisabled: setDisabled,
+    increaseSbValue: increaseSbValue
 }
 
 

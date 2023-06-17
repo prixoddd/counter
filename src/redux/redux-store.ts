@@ -1,5 +1,6 @@
 import {combineReducers, createStore} from 'redux';
 import {counterReducer} from './counter-reducer';
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
 
 
 type ReducersType = typeof rootReducer
@@ -10,8 +11,7 @@ export const rootReducer = combineReducers({
 })
 
 let store = createStore(rootReducer);
-// const store = Redux.createStore(counterReducer)
 
-// window.store = store;
+export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
 
 export default store
