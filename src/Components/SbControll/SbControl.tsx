@@ -18,26 +18,31 @@ type PropsType = {
 
 export const SbControl = React.memo( (props: PropsType) => {
 
-    const state = useAppSelector(state => state.counter)
+    const startValue = useAppSelector(state => state.counter.startValue)
+    const maxValue = useAppSelector(state => state.counter.maxValue)
+    const disabled = useAppSelector(state => state.counter.disabled)
+    const disabledButton = useAppSelector(state => state.counter.disabledButton)
+    const scoreBoard = useAppSelector(state => state.counter.scoreBoard)
+
     const dispatch = useDispatch()
 
-
+    // console.log(state.maxValue)
+    // console.log(state.startValue)
 
 
     useEffect(() => {
 
-        console.log(state.maxValue)
-        console.log(state.startValue)
 
-        localStorage.setItem('startValue', JSON.stringify(state.startValue));
-        localStorage.setItem('maxValue', JSON.stringify(state.maxValue));
 
-        if (state.maxValue === 0) {
+        localStorage.setItem('startValue', JSON.stringify(startValue));
+        localStorage.setItem('maxValue', JSON.stringify(maxValue));
+
+        if (maxValue === 0) {
             dispatch(setDisabledButton(true))
 
         } else {
-            if (typeof (state.maxValue) === 'number' && typeof (state.startValue) === 'number') {
-                if (state.maxValue < state.startValue) {
+            if (typeof (maxValue) === 'number' && typeof (startValue) === 'number') {
+                if (maxValue < startValue) {
                     dispatch(setDisabledButton(true))
 
                 } else {
@@ -47,7 +52,7 @@ export const SbControl = React.memo( (props: PropsType) => {
             }
 
         }
-    }, [state.startValue, state.maxValue])
+    }, [])
 
 
     const onChangeMax = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +60,7 @@ export const SbControl = React.memo( (props: PropsType) => {
         dispatch(setMaxValue(Number(e.currentTarget.value)))
     }
     const onChangeStart = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setDisabled("disabled"))
+        // dispatch(setDisabled("disabled"))
         props.controlStartValue(Number(e.currentTarget.value))
     }
 
@@ -65,14 +70,14 @@ export const SbControl = React.memo( (props: PropsType) => {
     }
 
     const disabledStart = () => {
-        if (typeof (state.maxValue) === 'number' && typeof (state.startValue) === 'number') {
-            if (state.maxValue === 0 && state.startValue === 0) {
+        if (typeof (maxValue) === 'number' && typeof (startValue) === 'number') {
+            if (maxValue === 0 && startValue === 0) {
                 return ''
             }
 
-            if (state.startValue < 0
-                || state.maxValue < state.startValue
-                || state.maxValue === state.startValue
+            if (startValue < 0
+                || maxValue <startValue
+                || maxValue === startValue
             ) {
                 dispatch(setDisabledButton(true))
                 dispatch(setDisabled("error"))
@@ -84,14 +89,14 @@ export const SbControl = React.memo( (props: PropsType) => {
     }
 
     const disabledMax = () => {
-        if (typeof (state.maxValue) === 'number' && typeof (state.startValue) === 'number') {
-            if (state.maxValue === 0 && state.startValue === 0) {
+        if (typeof (maxValue) === 'number' && typeof (startValue) === 'number') {
+            if (maxValue === 0 && startValue === 0) {
                 return ''
             }
-            if (state.maxValue < state.startValue
-                || state.maxValue <= 0
-                || state.startValue < 0
-                || state.maxValue === state.startValue
+            if (maxValue < startValue
+                || maxValue <= 0
+                || startValue < 0
+                || maxValue === startValue
             ) {
                 dispatch(setDisabledButton(true))
                 dispatch(setDisabled("error"))
@@ -108,23 +113,23 @@ export const SbControl = React.memo( (props: PropsType) => {
                 <div className={s.textInput}>
                     max value:
                     <input type="number"
-                           className={disabledMax()}
+                           className={''}
                            onChange={onChangeMax}
-                           value={state.maxValue}
+                           value={maxValue}
                     />
                 </div>
                 <div className={s.textInput}>
                     start value:
                     <input type="number"
-                           className={disabledStart()}
+                           className={''}
                            onChange={onChangeStart}
-                           value={state.startValue}
+                           value={startValue}
                     />
                 </div>
             </div>
             <div className={s.buttonsPlace}>
 
-                    <UniButton name='set' onClick={setActive} disabled={state.disabledButton}/>
+                    <UniButton name='set' onClick={setActive} disabled={disabledButton}/>
 
 
             </div>
