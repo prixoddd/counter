@@ -14,7 +14,7 @@
 }
 
 .red {
-    color: red
+    color: #fc2727
 }
 
 .background {
@@ -45,10 +45,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.scoreBoard disabled {
-
 }
 
 .scoreBoardDisabled {

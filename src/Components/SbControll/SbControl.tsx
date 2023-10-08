@@ -100,7 +100,7 @@ export const SbControl = React.memo(() => {
         <div className={s.background}>
             <div className={s.scoreBoard}>
                 <div className={s.textInput}>
-                    max value:
+                    Max value:
                     <input type="number"
                            className={disabledMax()}
                            onChange={onChangeMax}
@@ -108,7 +108,7 @@ export const SbControl = React.memo(() => {
                     />
                 </div>
                 <div className={s.textInput}>
-                    start value:
+                    Start value:
                     <input type="number"
                            className={disabledStart()}
                            onChange={onChangeStart}
@@ -117,7 +117,7 @@ export const SbControl = React.memo(() => {
                 </div>
             </div>
             <div className={s.buttonsPlace}>
-                <UniButton name='set' onClick={setActive} disabled={disabledButton}/>
+                <UniButton name='Set' onClick={setActive} disabled={disabledButton}/>
             </div>
         </div>
     )

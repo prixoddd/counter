@@ -15,7 +15,6 @@ type PropsType = {
 export const Scoreboard = React.memo((props: PropsType) => {
 
     const state = useAppSelector(state => state.counter)
-    const dispatch = useDispatch()
 
 
 
@@ -24,7 +23,7 @@ export const Scoreboard = React.memo((props: PropsType) => {
             return (
                 <div className={s.scoreBoardDisabled}>
                     <div className={state.disabled === 'error' ? s.red : ''}>
-                        {state.disabled === 'error' ? "Incorrect value!" : "enter values and press 'set'"}
+                        {state.disabled === 'error' ? "Incorrect value!" : "Enter values and press 'Set'"}
 
                     </div>
                 </div>
@@ -47,7 +46,7 @@ export const Scoreboard = React.memo((props: PropsType) => {
         <div className={s.background}>
             {scoreBoard()}
             <div className={s.buttonsPlace}>
-                <UniButton disabled={buttonDisabled} onClick={props.resetScoreBoard} name='Reset'/>
+                <UniButton disabled={buttonDisabled} onClick={props.resetScoreBoard} name='Res'/>
                 <UniButton disabled={incButtonDisabled} onClick={props.incScoreBoard} name="Inc"/>
             </div>
         </div>
