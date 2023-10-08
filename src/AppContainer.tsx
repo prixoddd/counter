@@ -1,15 +1,16 @@
-import {connect} from 'react-redux';
+import { connect } from "react-redux"
 import {
-    DisType, increaseSbValue,
+    DisType,
+    increaseSbValue,
     InitialStateType,
     setDisabled,
     setDisabledButton,
     setMaxValue,
     setScoreBoard,
-    setStartValue
-} from './redux/counter-reducer';
-import App from './App';
-import {AppStateType} from './redux/redux-store';
+    setStartValue,
+} from "redux/counter-reducer"
+import App from "./App"
+import { AppStateType } from "redux/redux-store"
 
 export type MyAppStateType = InitialStateType & MapDispatchToPropsType
 
@@ -20,7 +21,6 @@ type MapDispatchToPropsType = {
     setScoreBoard: (value: number) => void
     setDisabled: (disabled: DisType) => void
     increaseSbValue: (value: number) => void
-
 }
 
 const mapStateToProps = (state: AppStateType): InitialStateType => {
@@ -29,7 +29,7 @@ const mapStateToProps = (state: AppStateType): InitialStateType => {
         maxValue: state.counter.maxValue,
         disabledButton: state.counter.disabledButton,
         scoreBoard: state.counter.scoreBoard,
-        disabled: state.counter.disabled
+        disabled: state.counter.disabled,
     }
 }
 
@@ -39,9 +39,8 @@ const mapDispatchToProps = {
     setDisabledButton: setDisabledButton,
     setScoreBoard: setScoreBoard,
     setDisabled: setDisabled,
-    increaseSbValue: increaseSbValue
+    increaseSbValue: increaseSbValue,
 }
-
 
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)
 

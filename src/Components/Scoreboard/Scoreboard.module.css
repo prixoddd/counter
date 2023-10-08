@@ -1,37 +1,14 @@
-
-
 .buttonsPlace {
     display: flex;
     justify-content: space-around;
     width: 240px;
     height: 60px;
-
-    /*border: 2px deepskyblue solid;*/
     align-items: center;
     border-radius: 8px;
-    /*flex-direction: row;*/
-
 }
 
 .red {
-    color: #fc2727
-}
-
-.background {
-    height: 200px;
-    width: 300px;
-    margin: 10px;
-    border: 3px deepskyblue solid;
-    background: #ffffff;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    color: #272d33;
-    font-size: 50px;
-
-
+    color: #fc2727;
 }
 
 .scoreBoard {
@@ -50,9 +27,6 @@
 .scoreBoardDisabled {
     height: 100px;
     width: 240px;
-    /*background-color: deepskyblue;*/
-    /*border: 2px deepskyblue solid;*/
-
     border-radius: 8px;
     font-size: 18px;
     font-weight: bold;
@@ -66,5 +40,4 @@
 
 .buttonDisabled {
     background-color: gray;
-
 }
