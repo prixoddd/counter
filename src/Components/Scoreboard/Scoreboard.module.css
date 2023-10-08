@@ -6,7 +6,7 @@
     width: 240px;
     height: 60px;
 
-    border: 2px deepskyblue solid;
+    /*border: 2px deepskyblue solid;*/
     align-items: center;
     border-radius: 8px;
     /*flex-direction: row;*/
@@ -22,6 +22,7 @@
     width: 300px;
     margin: 10px;
     border: 3px deepskyblue solid;
+    background: #ffffff;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -54,7 +55,7 @@
     height: 100px;
     width: 240px;
     /*background-color: deepskyblue;*/
-    border: 2px deepskyblue solid;
+    /*border: 2px deepskyblue solid;*/
 
     border-radius: 8px;
     font-size: 18px;

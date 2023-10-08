@@ -21,13 +21,23 @@ export function App() {
     }
 
     return (
-        <div className={s.content}>
-            <SbControl/>
-            <Scoreboard
+        <div>
+            <div className={s.bg}></div>
+            <div className={`${s.bg} ${s.bg2}`}></div>
+            <div className={`${s.bg} ${s.bg3}`}></div>
+            <div className={s.mainBlock}>
+
+                <div className={s.content}>
+                    <SbControl/>
+                    <Scoreboard
                         resetScoreBoard={resetScoreBoard}
                         incScoreBoard={incScoreBoard}
-            />
+                    />
+                </div>
+            </div>
         </div>
+
+
 
     )
 }

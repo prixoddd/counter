@@ -1,5 +1,4 @@
 
-
 button {
     color: #272d33;
     background-color: deepskyblue;
@@ -13,6 +12,7 @@ button {
 }
 
 .buttonDisabled {
-     background-color: gray;
+    background-color: #c0c0c0;
+    color: #3f3f3f;
 
- }
+}
